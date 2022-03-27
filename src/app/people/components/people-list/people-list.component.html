@@ -1,0 +1,27 @@
+<ng-template #loading>
+  <div class="loading ms-3">Loading people...</div>
+</ng-template>
+
+<ng-container *ngIf="people$ | async as people else loading">
+  <div class="table-responsive">
+    <table class="table table-striped table-hover">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Gender</th>
+        <th>Birth Year</th>
+        <th>Homeworld</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let person of people | paginate: { itemsPerPage: 5, currentPage: p }" (click)="showPerson(person.films)">
+        <td>{{ person.name }}</td>
+        <td>{{ person.gender }}</td>
+        <td>{{ person.birth_year }}</td>
+        <td>{{ person.homeWorld }}</td>
+      </tr>
+      </tbody>
+    </table>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+</ng-container>

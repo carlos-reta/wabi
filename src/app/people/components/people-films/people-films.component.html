@@ -1,0 +1,14 @@
+<ng-template #loading>
+  <div class="loading ms-3">Loading films...</div>
+</ng-template>
+
+<ng-container class="container" *ngIf="films$ | async as films else loading">
+  <div class="row films-margin">
+    <div class="col-sm" *ngFor="let film of films">
+      <p><img [src]="'/assets/images/episode' + film.episode_id + '.jpeg'"></p>
+      <p>{{ film.title }}</p>
+    </div>
+  
+    <button class="btn btn-primary" [routerLink]="''"><i class="fa fa-chevron-left"></i> GO BACK</button>
+  </div>
+</ng-container>
